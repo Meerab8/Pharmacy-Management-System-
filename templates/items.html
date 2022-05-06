@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <style>
+        h1 {
+            text-align: center;
+        }
+        .main {
+            display: flex;
+        }
+        .item-card {
+            margin: 20px;
+            width: 400px;
+            padding: 10px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+        }
+        a {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    All Items
+</h1>
+<div class="main">
+    {% for item in items %}
+        <div class="item-card">
+            <h2>{{ item.name }}</h2>
+            <p>{{ item.description }}</p>
+            <h3>Rs. {{ item.price }}</h3>
+            <span>Remaining: <b>{{ item.stock }}</b></span>
+            <a href={% url 'inventory:place-order' item.id %}>Buy</a>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
